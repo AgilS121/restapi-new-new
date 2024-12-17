@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow as tf
 import nltk
 from flask import Flask, request, jsonify
-from fuzzywuzzy import process
 from nltk.corpus import stopwords
 
 # Initialize Flask app
