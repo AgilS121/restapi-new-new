@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy only necessary files
 COPY requirements.txt .
 COPY app.py .
-# COPY models/ ./models/
-# COPY templates/ ./templates/
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -21,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN useradd -m myuser
 USER myuser
 
-# Expose the port the app runs on
+# Expose the port the app runs on (Heroku assigns ports dynamically)
 EXPOSE 5000
 
 # Command to run the application
