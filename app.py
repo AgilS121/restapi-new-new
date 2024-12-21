@@ -16,10 +16,10 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 # Load pre-trained model components
-MODEL_PATH = 'lstm_chatbot_model.h5'
-TOKENIZER_PATH = 'lstm_tokenizer.pickle'
-LABEL_ENCODER_PATH = 'lstm_label_encoder.pickle'
-ANSWERS_DICT_PATH = 'lstm_answers_dict.json'
+MODEL_PATH = 'models/lstm_chatbot_model.h5'
+TOKENIZER_PATH = 'models/lstm_tokenizer.pickle'
+LABEL_ENCODER_PATH = 'models/lstm_label_encoder.pickle'
+ANSWERS_DICT_PATH = 'models/lstm_answers_dict.json'
 
 # Configuration
 max_words = 10000
