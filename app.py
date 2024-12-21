@@ -5,15 +5,15 @@ import pickle
 import numpy as np
 import tensorflow as tf
 import nltk
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from nltk.corpus import stopwords
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Load NLTK resources
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # Load pre-trained model components
 MODEL_PATH = 'lstm_chatbot_model.h5'
@@ -114,7 +114,7 @@ def chat():
             'status': 'failed'
         }), 500
 
-@app.route('/', methods=['GET'])
+@app.route('/category', methods=['GET'])
 def health_check():
     """Simple health check endpoint"""
     return jsonify({
@@ -122,6 +122,10 @@ def health_check():
         'model_loaded': model is not None,
         'categories': list(answers_dict.keys())
     }), 200
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     # Use 0.0.0.0 to make it accessible from other machines
