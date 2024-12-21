@@ -6,6 +6,7 @@ import numpy as np
 import tensorflow as tf
 import nltk
 from flask import Flask, render_template, request, jsonify
+from fuzzywuzzy import process
 from nltk.corpus import stopwords
 
 # Initialize Flask app
@@ -129,4 +130,4 @@ def index():
 
 if __name__ == '__main__':
     # Use 0.0.0.0 to make it accessible from other machines
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
