@@ -63,7 +63,7 @@ def chat():
     try:
         # Get question from request
         data = request.get_json()
-        question = data.get('question', '')
+        question = data.get('message', '')
         
         if not question:
             return jsonify({
@@ -92,7 +92,13 @@ def chat():
         answer = "Maaf, saya tidak dapat menemukan jawaban yang tepat."
         best_match_score = 0
         
-        if predicted_category in answers_dict:
+        # if predicted_category in answers_dict:
+        #     sub_questions = list(answers_dict[predicted_category].keys())
+        #     best_match, best_match_score = process.extractOne(cleaned_question, sub_questions)
+            
+        #     if best_match_score >= 80:
+        #         answer = answers_dict[predicted_category][best_match]
+        if confidence >= 0.7 and predicted_category in answers_dict:
             sub_questions = list(answers_dict[predicted_category].keys())
             best_match, best_match_score = process.extractOne(cleaned_question, sub_questions)
             
@@ -102,11 +108,11 @@ def chat():
         # Prepare response
         return jsonify({
             'status': 'success',
-            'question': question,
+            'message': question,
             'category': predicted_category,
             'confidence': confidence,
             'match_score': best_match_score,
-            'answer': answer
+            'isi': answer
         }), 200
     
     except Exception as e:
@@ -130,4 +136,4 @@ def index():
 
 if __name__ == '__main__':
     # Use 0.0.0.0 to make it accessible from other machines
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(port=5000, debug=True)
